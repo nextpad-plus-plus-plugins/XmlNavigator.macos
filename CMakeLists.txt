@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
-project(XmlNavigator LANGUAGES CXX OBJCXX)
+project(XmlNavigator VERSION 1.0.2 LANGUAGES CXX OBJCXX)
+set(CMAKE_OSX_DEPLOYMENT_TARGET "12.0")  # min macOS 12; without this, min-OS defaults to the build SDK
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_OBJCXX_STANDARD 17)
@@ -24,6 +25,8 @@ target_include_directories(XmlNavigator PRIVATE
 target_compile_options(XmlNavigator PRIVATE -fobjc-arc)
 target_link_libraries(XmlNavigator PRIVATE "-framework Cocoa")
 set_target_properties(XmlNavigator PROPERTIES PREFIX "" SUFFIX ".dylib")
+# Stamp version into the dylib Mach-O current_version (Plugins Admin reads it).
+target_link_options(XmlNavigator PRIVATE "-Wl,-current_version,${PROJECT_VERSION}")
 
 set(PLUGIN_INSTALL_DIR "$ENV{HOME}/.nextpad++/plugins/XmlNavigator")
 install(TARGETS XmlNavigator DESTINATION "${PLUGIN_INSTALL_DIR}")
