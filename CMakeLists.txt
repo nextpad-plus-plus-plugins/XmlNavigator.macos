@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(XmlNavigator VERSION 1.0.2 LANGUAGES CXX OBJCXX)
+project(XmlNavigator VERSION 1.0.3 LANGUAGES CXX OBJCXX)
 set(CMAKE_OSX_DEPLOYMENT_TARGET "12.0")  # min macOS 12; without this, min-OS defaults to the build SDK
 
 set(CMAKE_CXX_STANDARD 17)
